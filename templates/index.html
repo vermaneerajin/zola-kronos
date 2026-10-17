@@ -5,9 +5,10 @@
 {% block main %}
 {#- The home page is a hero + a short list of recent posts. ------#}
 <section class="hero">
-  <div class="wrap">
+  <div class="wrap hero__inner">
     {%- if config.extra.kronos_avatar | default(value="") != "" %}
-    <img class="hero__avatar" src="{{ get_url(path=config.extra.kronos_avatar) | safe }}" alt="" width="72" height="72">
+    <img class="hero__avatar" src="{{ get_url(path=config.extra.kronos_avatar) | safe }}"
+         alt="" width="96" height="96" decoding="async">
     {%- endif %}
 
     <p class="hero__eyebrow"><span class="hero__dot"></span>{{ config.extra.kronos_eyebrow | default(value="Now writing") }}</p>

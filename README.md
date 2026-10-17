@@ -115,13 +115,67 @@ url = "/blog/"
 
 ### Social links
 
-`icon` is one of `github`, `mastodon`, `bluesky`, `x`, `linkedin`, `email`, `rss`.
+Add one `[[extra.kronos_social]]` block per link — as many as you like. They
+render as a row of icon buttons in the footer, wrapping onto more rows on
+narrow screens, each one a 48px tap target.
 
 ```toml
 [[extra.kronos_social]]
 icon = "github"
-url = "https://github.com/vermaneerajin"
+name = "GitHub"                      # accessible label; optional
+url = "https://github.com/yourname"
+
+[[extra.kronos_social]]
+icon = "devto"
+name = "DEV"
+url = "https://dev.to/yourname"
+
+[[extra.kronos_social]]
+icon = "email"
+url = "mailto:you@example.com"
 ```
+
+`name` is used for the `aria-label`, the tooltip and screen-reader text. If you
+leave it out it falls back to the capitalised icon key.
+
+Built-in `icon` values:
+
+| | | | |
+| --- | --- | --- | --- |
+| `github` | `gitlab` | `codeberg` | `stackoverflow` |
+| `devto` | `hashnode` | `medium` | `substack` |
+| `mastodon` | `bluesky` | `x` | `threads` |
+| `linkedin` | `facebook` | `instagram` | `youtube` |
+| `twitch` | `telegram` | `discord` | `reddit` |
+| `hackernews` | `email` | `rss` | `website` |
+
+Any other value falls back to a generic link icon, so an unlisted service still
+renders sensibly:
+
+```toml
+[[extra.kronos_social]]
+icon = "goodreads"      # not built in — shows the generic link icon
+name = "Goodreads"
+url = "https://www.goodreads.com/yourname"
+```
+
+To add a real icon for it, override `templates/macros.html` in your own site and
+add a branch to the `icon` macro. Icons are 24x24 inline SVG drawn in a 1.75
+stroke weight with `currentColor`, so they inherit the theme automatically.
+
+### Avatar
+
+`kronos_avatar` is a path under `static/`. The image is cropped to a circle
+(`object-fit: cover`, so it does not matter if the source is not square),
+sized 4.5rem on phones and 5.5rem from the tablet breakpoint, and given a soft
+brand-coloured ring. It sits on its own line above the eyebrow pill, left
+aligned with the rest of the hero.
+
+```toml
+kronos_avatar = "images/avatar.png"
+```
+
+Leave it as `""` to hide it.
 
 ### Per-post front matter
 

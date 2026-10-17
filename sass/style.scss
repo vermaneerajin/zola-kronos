@@ -351,11 +351,20 @@ a {
   pointer-events: none;
 }
 
+/* The hero is a single column: each child sits on its own line regardless of
+   whether it is an inline-flex pill, an image or a paragraph. */
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hero__inner > * { margin: 0; }
+.hero__inner > * + * { margin-top: 1rem; }
+
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
-  margin: 0 0 1rem;
   padding: .3rem .7rem;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -369,18 +378,27 @@ a {
 .hero__dot {
   width: .5rem; height: .5rem; border-radius: 50%;
   background: var(--primary);
+  flex: none;
 }
 
 .hero__avatar {
-  width: 4.5rem; height: 4.5rem;
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
-  margin-bottom: 1.25rem;
-  border: 2px solid var(--border);
   object-fit: cover;
+  background: var(--bg-subtle);
+  /* A soft brand ring instead of a hard border, so it sits with the text
+     rather than cutting a hole in the hero wash. */
+  border: 0;
+  box-shadow: 0 0 0 1px var(--border), 0 0 0 5px var(--primary-soft);
+}
+@include from($bp-md) {
+  .hero__avatar { width: 5.5rem; height: 5.5rem; }
 }
 
 .hero__title {
-  margin: 0 0 .75rem;
+  margin: .5rem 0 0;
   font-size: clamp(2.25rem, 10vw, 4.5rem);
   line-height: 1.05;
   letter-spacing: -.035em;
@@ -393,13 +411,13 @@ a {
 
 .hero__tagline {
   max-width: 32rem;
-  margin: 0 0 1rem;
+  margin: .25rem 0 0;
   font-size: clamp(1.0625rem, 4vw, 1.375rem);
   color: var(--text);
 }
 .hero__intro {
   max-width: 34rem;
-  margin: 0 0 2rem;
+  margin: .25rem 0 0;
   color: var(--text-muted);
 }
 
@@ -407,6 +425,8 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: .75rem;
+  margin-top: 1.75rem;
+  width: 100%;
 }
 
 /* --- Buttons -------------------------------------------------- */

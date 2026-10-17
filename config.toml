@@ -44,7 +44,7 @@ kronos_home_posts = 5
 kronos_show_reading_time = true
 kronos_show_toc = false
 kronos_author = "Neeraj Verma"
-kronos_avatar = ""
+kronos_avatar = "images/avatar.png"
 
 [[extra.kronos_menu]]
 name = "Blog"
@@ -60,8 +60,55 @@ url = "/about/"
 
 [[extra.kronos_social]]
 icon = "github"
-url = "https://github.com/getzola/zola"
+name = "GitHub"
+url = "https://github.com/vermaneerajin"
+
+[[extra.kronos_social]]
+icon = "x"
+name = "X"
+url = "https://x.com/"
+
+[[extra.kronos_social]]
+icon = "devto"
+name = "DEV"
+url = "https://dev.to/"
+
+[[extra.kronos_social]]
+icon = "mastodon"
+name = "Mastodon"
+url = "https://mastodon.social/"
+
+[[extra.kronos_social]]
+icon = "bluesky"
+name = "Bluesky"
+url = "https://bsky.app/"
+
+[[extra.kronos_social]]
+icon = "linkedin"
+name = "LinkedIn"
+url = "https://www.linkedin.com/"
+
+[[extra.kronos_social]]
+icon = "stackoverflow"
+name = "Stack Overflow"
+url = "https://stackoverflow.com/"
+
+[[extra.kronos_social]]
+icon = "telegram"
+name = "Telegram"
+url = "https://telegram.org/"
+
+[[extra.kronos_social]]
+icon = "youtube"
+name = "YouTube"
+url = "https://www.youtube.com/"
+
+[[extra.kronos_social]]
+icon = "email"
+name = "Email"
+url = "mailto:you@example.com"
 
 [[extra.kronos_social]]
 icon = "rss"
+name = "RSS feed"
 url = "/atom.xml"
