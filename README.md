@@ -225,6 +225,25 @@ are the example, and the theme itself is `templates/`, `sass/`, `static/` and
 
 By [Neeraj Verma](https://github.com/vermaneerajin).
 
+## Deploying
+
+The repository ships a GitHub Actions workflow
+([`.github/workflows/pages.yml`](.github/workflows/pages.yml)) that builds the
+demo and publishes it to GitHub Pages on every push to `main`.
+
+To turn it on, set **Settings → Pages → Build and deployment → Source** to
+**GitHub Actions** once. No `gh-pages` branch and no deploy key are needed —
+the workflow uses the built-in `GITHUB_TOKEN`.
+
+It builds with `--base-url` taken from the Pages configuration, so the same
+workflow works whether the site is served from the domain root or from a
+`/<repo>/` sub-path. All configured menu, call-to-action and social URLs are
+resolved through Zola's `get_url()`, so relative paths like `/blog/` stay
+correct under a sub-path.
+
+The pinned Zola version lives in the `ZOLA_VERSION` env var at the top of the
+workflow.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

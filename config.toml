@@ -1,5 +1,5 @@
 # Demo / development site for the Kronos theme.
-base_url = "https://example.com"
+base_url = "https://vermaneerajin.github.io/zola-kronos"
 title = "Kronos"
 description = "A minimal, mobile-first Zola blog theme."
 

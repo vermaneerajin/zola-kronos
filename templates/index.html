@@ -24,12 +24,12 @@
 
     <div class="hero__actions">
       {%- if config.extra.kronos_cta_text | default(value="") != "" %}
-      <a class="btn btn--primary" href="{{ config.extra.kronos_cta_url | default(value='/') | safe }}">
+      <a class="btn btn--primary" href="{{ m::url(path=config.extra.kronos_cta_url | default(value='/')) | trim | safe }}">
         {{ config.extra.kronos_cta_text }} {{ m::icon(name="arrow-right") }}
       </a>
       {%- endif %}
       {%- if config.extra.kronos_cta2_text | default(value="") != "" %}
-      <a class="btn btn--ghost" href="{{ config.extra.kronos_cta2_url | default(value='/') | safe }}">
+      <a class="btn btn--ghost" href="{{ m::url(path=config.extra.kronos_cta2_url | default(value='/')) | trim | safe }}">
         {{ config.extra.kronos_cta2_text }}
       </a>
       {%- endif %}

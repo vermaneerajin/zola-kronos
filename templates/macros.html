@@ -2,6 +2,20 @@
    Kronos macros
    ============================================================= #}
 
+{# Resolve a configured URL. Absolute URLs and mailto: links pass through;
+   anything else is run through get_url() so the site still works when it is
+   served from a sub-path, e.g. a GitHub Pages project site. #}
+{% macro url(path) %}
+{%- set p = path | replace(from="$BASE_URL/", to="/") | replace(from="$BASE_URL", to="") -%}
+{%- if p is starting_with("http") or p is starting_with("mailto:") or p is starting_with("tel:") or p is starting_with("#") -%}
+{{- p | safe -}}
+{%- elif p is ending_with("/") -%}
+{{- get_url(path=p, trailing_slash=true) | safe -}}
+{%- else -%}
+{{- get_url(path=p) | safe -}}
+{%- endif -%}
+{% endmacro url %}
+
 {# Inline SVG icons. Usage: {{ m::icon(name="github") }} #}
 {% macro icon(name) %}
 {%- set a = 'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' -%}
