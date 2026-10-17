@@ -9,6 +9,11 @@ demo = "https://vermaneerajin.github.io/zola-kronos"
 
 [extra]
 # Tagline shown under the site title in the hero
+kronos_favicon = "icons/favicon.svg"
+kronos_favicon_ico = "favicon.ico"
+kronos_apple_touch_icon = "apple-touch-icon.png"
+kronos_theme_color = "#369369"
+kronos_theme_color_dark = "#0e1411"
 kronos_eyebrow = "Now writing"
 kronos_hero_title = "Kronos"
 kronos_cta2_text = "About"

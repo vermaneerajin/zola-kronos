@@ -168,6 +168,33 @@ To add a real icon for it, override `templates/macros.html` in your own site and
 add a branch to the `icon` macro. Icons are 24x24 inline SVG drawn in a 1.75
 stroke weight with `currentColor`, so they inherit the theme automatically.
 
+### Favicons
+
+The theme ships a default icon set (a clock mark in the brand colour) so a new
+site looks finished immediately. Each option is a path under `static/`; set one
+to `""` to drop that tag entirely.
+
+| Key | Default | Purpose |
+| --- | --- | --- |
+| `kronos_favicon` | `"icons/favicon.svg"` | The main icon. `.svg` and `.png` get the right `type` automatically. |
+| `kronos_favicon_ico` | `"favicon.ico"` | Legacy fallback for browsers that ignore SVG icons. |
+| `kronos_apple_touch_icon` | `"apple-touch-icon.png"` | iOS home screen, 180x180. |
+| `kronos_theme_color` | `"#369369"` | Mobile browser chrome tint in light mode. |
+| `kronos_theme_color_dark` | `"#0e1411"` | Same, in dark mode. |
+
+To use your own, drop the files in your site's `static/` and point the options
+at them — files in your `static/` win over the theme's:
+
+```toml
+kronos_favicon = "icons/my-icon.svg"
+kronos_apple_touch_icon = "icons/my-icon-180.png"
+```
+
+The bundled `favicon.svg` carries its own dark-mode variant through a
+`prefers-color-scheme` media query inside the file, so the icon stays legible
+against both light and dark browser tab bars. `theme-color` is emitted twice,
+once per scheme, rather than hardcoded.
+
 ### Avatar
 
 `kronos_avatar` is a path under `static/`. The image is cropped to a circle

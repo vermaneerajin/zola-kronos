@@ -29,6 +29,11 @@ dark_theme = "github-dark"
 add_color_scheme = false
 
 [extra]
+kronos_favicon = "icons/favicon.svg"
+kronos_favicon_ico = "favicon.ico"
+kronos_apple_touch_icon = "apple-touch-icon.png"
+kronos_theme_color = "#369369"
+kronos_theme_color_dark = "#0e1411"
 kronos_eyebrow = "Notes on focused work"
 kronos_hero_title = "Kronos"
 kronos_cta2_text = "About"

@@ -17,7 +17,28 @@
   {%- set og_type = "website" -%}
 {%- endif -%}
 <meta name="description" content="{{ page_desc }}">
-<meta name="theme-color" content="#369369">
+{#- Favicons. Each option is a path under `static/`; set one to "" to drop
+    that tag. The SVG is the modern icon (it carries its own dark variant),
+    the .ico is the legacy fallback, and the PNG is for iOS home screens. -#}
+{%- set favicon = config.extra.kronos_favicon | default(value="icons/favicon.svg") -%}
+{%- set favicon_ico = config.extra.kronos_favicon_ico | default(value="favicon.ico") -%}
+{%- set apple_icon = config.extra.kronos_apple_touch_icon | default(value="apple-touch-icon.png") -%}
+{%- if favicon != "" %}
+<link rel="icon" href="{{ get_url(path=favicon) | safe }}"
+      {% if favicon is ending_with(".svg") %}type="image/svg+xml"{% elif favicon is ending_with(".png") %}type="image/png"{% endif %}>
+{%- endif %}
+{%- if favicon_ico != "" %}
+<link rel="alternate icon" href="{{ get_url(path=favicon_ico) | safe }}" sizes="any" type="image/x-icon">
+{%- endif %}
+{%- if apple_icon != "" %}
+<link rel="apple-touch-icon" href="{{ get_url(path=apple_icon) | safe }}">
+{%- endif %}
+
+{#- Tints the browser chrome on mobile; follows the active mode. -#}
+{%- set tc_light = config.extra.kronos_theme_color | default(value="#369369") -%}
+{%- set tc_dark = config.extra.kronos_theme_color_dark | default(value="#0e1411") -%}
+<meta name="theme-color" content="{{ tc_light }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="{{ tc_dark }}" media="(prefers-color-scheme: dark)">
 {%- if current_url %}
 <link rel="canonical" href="{{ current_url | safe }}">
 {%- endif %}
