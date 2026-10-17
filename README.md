@@ -22,7 +22,16 @@ Requires Zola **0.22.0** or newer.
 
 ```bash
 cd my-site
-git submodule add https://github.com/yourname/kronos.git themes/kronos
+git submodule add https://github.com/vermaneerajin/zola-kronos.git themes/kronos
+git submodule update --init --recursive
+```
+
+The submodule directory must be named `kronos`, matching the `theme` value
+below — the repository itself is called `zola-kronos`, so pass the path
+explicitly as shown. If you would rather not use submodules, clone it instead:
+
+```bash
+git clone https://github.com/vermaneerajin/zola-kronos.git themes/kronos
 ```
 
 Then in `config.toml`:
@@ -113,7 +122,7 @@ url = "/blog/"
 ```toml
 [[extra.kronos_social]]
 icon = "github"
-url = "https://github.com/yourname"
+url = "https://github.com/vermaneerajin"
 ```
 
 ### Per-post front matter
