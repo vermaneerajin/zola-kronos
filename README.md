@@ -138,6 +138,11 @@ url = "mailto:you@example.com"
 `name` is used for the `aria-label`, the tooltip and screen-reader text. If you
 leave it out it falls back to the capitalised icon key.
 
+Off-site links open in a new tab, with `rel="me noopener noreferrer"` and an
+"(opens in a new tab)" note for screen readers. Links served from your own site
+(an RSS feed, a contact page) and `mailto:` / `tel:` links open in place, since
+a new tab for those just leaves a stray window behind.
+
 Built-in `icon` values:
 
 | | | | |

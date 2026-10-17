@@ -12,12 +12,19 @@
     <ul class="social" aria-label="Elsewhere">
       {%- for link in social %}
       {#- `name` is the accessible label; it falls back to the icon key. -#}
-      {%- set label = link.name | default(value=link.icon | capitalize) %}
+      {%- set label = link.name | default(value=link.icon | capitalize) -%}
+      {%- set href = m::url(path=link.url) | trim -%}
+      {#- Off-site links open in a new tab. Anything served from this site
+          (an RSS feed, a contact page) and mailto:/tel: links do not, since
+          a new tab for those is just a stray window. -#}
+      {%- set external = href is starting_with("http") and not href is starting_with(config.base_url) -%}
       <li>
-        <a href="{{ m::url(path=link.url) | trim | safe }}"
-           aria-label="{{ label }}" title="{{ label }}" rel="me noopener">
+        <a href="{{ href | safe }}"
+           aria-label="{{ label }}" title="{{ label }}"
+           {%- if external %} target="_blank" rel="me noopener noreferrer"
+           {%- else %} rel="me"{% endif %}>
           {{ m::icon(name=link.icon) }}
-          <span class="visually-hidden">{{ label }}</span>
+          <span class="visually-hidden">{{ label }}{% if external %} (opens in a new tab){% endif %}</span>
         </a>
       </li>
       {%- endfor %}
