@@ -1,28 +1,41 @@
 +++
 title = "About"
-description = "A page to show what plain prose looks like in Kronos."
+description = "Why this site exists and what you will find on it."
 template = "page.html"
 +++
 
-Kronos is a minimal blog theme for [Zola](https://www.getzola.org). It is built
-mobile-first: body text starts at 17px, every link and button is at least 44–52px
-tall, and nothing important hides behind a hover state.
+Kronos is a notebook about doing focused work: how attention actually behaves,
+what planning is for, and which habits survive a bad week.
 
-## What is included
+No hustle, no 5am club, no app of the month. Most of what works is unexciting
+and has been known for decades — the difficulty is never the idea, it is
+keeping it running once the week gets busy.
 
-- A hero home page with a soft brand-coloured wash
-- Light and dark modes, light by default, remembered per visitor
-- Tags, pagination, prev/next post navigation, Atom feed
-- Syntax highlighting that follows the active mode
+## What you will find here
 
-## Typography sample
+- **Short pieces.** Most posts are a five-minute read, because a 4,000-word
+  essay on brevity would be its own rebuttal.
+- **Things I actually run.** If a system is described here, it survived at
+  least a few months of real use.
+- **Honest failure modes.** Every method below has a way it quietly stops
+  working, and that part is usually more useful than the method.
 
-Regular text, **bold text**, *italic text*, `inline code`, and a
-[link to somewhere](https://www.getzola.org).
+## The one-paragraph summary
 
-> A blockquote, for when someone else says it better.
+Protect one uninterrupted block a day. Keep a small list of what you are
+committing to today, separate from the inventory of everything you might do.
+Batch the shallow work instead of sprinkling it. Match demanding work to your
+best hours. Review once a week, briefly. That is most of it.
 
-| Setting | Default |
+## Topics
+
+| Tag | What it covers |
 | --- | --- |
-| `kronos_home_posts` | `5` |
-| `kronos_show_toc` | `false` |
+| `deep-work` | Protecting and using uninterrupted time |
+| `focus` | Attention, context switching, interruptions |
+| `planning` | Deciding what happens and what does not |
+| `habits` | Routines, reviews, and making things stick |
+| `systems` | How the pieces fit together |
+| `tools` | The small amount of software that earns its place |
+
+> The best system is the one still running in month six.

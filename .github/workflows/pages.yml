@@ -38,13 +38,12 @@ jobs:
       - name: Show Zola version
         run: zola --version
 
-      # `enablement: true` switches the repository's Pages source to GitHub
-      # Actions if it is not set that way already, so no manual setup is needed.
+      # Requires Settings -> Pages -> Source = "GitHub Actions". The action's
+      # `enablement` option cannot create the site itself: GITHUB_TOKEN has no
+      # admin rights, so it fails with "Resource not accessible by integration".
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       # `--base-url` overrides config.toml, so the demo works at whatever
       # path Pages serves it from (user site or /<repo>/ project site).
