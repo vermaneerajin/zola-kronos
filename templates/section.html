@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title | default(value=config.title) }} — {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="post-header prose">
+  <h1 class="mt-0">{{ section.title | default(value="Posts") }}</h1>
+  {%- if section.description %}
+  <p class="hero__intro" style="margin-bottom:0">{{ section.description }}</p>
+  {%- endif %}
+</header>
+
+{%- if section.content %}
+<div class="post-content prose">{{ section.content | safe }}</div>
+{%- endif %}
+
+{%- if paginator %}
+  {%- set posts = paginator.pages -%}
+{%- else %}
+  {%- set posts = section.pages -%}
+{%- endif %}
+
+{%- if posts | length > 0 %}
+<ul class="post-list">
+  {%- for post in posts %}
+  {{ m::post_item(page=post) }}
+  {%- endfor %}
+</ul>
+{%- else %}
+<div class="empty-state"><p class="mt-0">Nothing here yet.</p></div>
+{%- endif %}
+
+{%- if paginator and paginator.number_pagers > 1 %}
+{% include "partials/pagination.html" %}
+{%- endif %}
+
+{%- if section.subsections | length > 0 %}
+<div class="section-head" style="margin-top:3rem"><h2>Sections</h2></div>
+<ul class="tag-cloud">
+  {%- for path in section.subsections %}
+  {%- set sub = get_section(path=path, metadata_only=true) %}
+  <li><a class="tag" href="{{ sub.permalink | safe }}">{{ sub.title }}</a></li>
+  {%- endfor %}
+</ul>
+{%- endif %}
+{% endblock content %}

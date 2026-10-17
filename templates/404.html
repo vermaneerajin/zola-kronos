@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found — {{ config.title }}{% endblock title %}
+
+{% block content %}
+<div class="notfound">
+  <p class="notfound__code">404</p>
+  <h1 class="mt-0">This page took a wrong turn</h1>
+  <p class="hero__intro" style="margin-inline:auto">
+    The link may be old, or the page may have moved.
+  </p>
+  <div class="hero__actions" style="justify-content:center">
+    <a class="btn btn--primary" href="{{ get_url(path='/') | safe }}">Back home {{ m::icon(name="arrow-right") }}</a>
+  </div>
+</div>
+{% endblock content %}

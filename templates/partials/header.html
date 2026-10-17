@@ -1,0 +1,53 @@
+{%- import "macros.html" as m -%}
+{%- set menu = config.extra.kronos_menu | default(value=[]) -%}
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="{{ get_url(path='/') | safe }}">
+      <svg class="brand__mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
+      </svg>
+      <span>{{ config.title }}</span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul class="nav__list">
+        {%- for item in menu %}
+        <li>
+          <a class="nav__link" href="{{ item.url | replace(from='$BASE_URL', to=config.base_url) | safe }}"
+             {% if current_path and current_path is starting_with(item.url) %}aria-current="page"{% endif %}>
+            {{ item.name }}
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+
+      <button class="icon-btn" type="button" id="theme-toggle"
+              aria-label="Switch between dark and light mode" title="Switch between dark and light mode">
+        {{ m::icon(name="sun") }}{{ m::icon(name="moon") }}
+      </button>
+
+      {%- if menu %}
+      <button class="icon-btn icon-btn--menu" type="button" id="menu-toggle"
+              aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+        {{ m::icon(name="menu") }}
+      </button>
+      {%- endif %}
+    </nav>
+  </div>
+
+  {%- if menu %}
+  <div class="mobile-nav" id="mobile-nav" data-open="false">
+    <ul class="mobile-nav__list">
+      {%- for item in menu %}
+      <li>
+        <a class="mobile-nav__link" href="{{ item.url | replace(from='$BASE_URL', to=config.base_url) | safe }}"
+           {% if current_path and current_path is starting_with(item.url) %}aria-current="page"{% endif %}>
+          {{ item.name }}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endif %}
+</header>

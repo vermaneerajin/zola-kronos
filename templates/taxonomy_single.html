@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}#{{ term.name }} — {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="post-header prose">
+  <p class="post-meta"><a href="{{ get_url(path=taxonomy.name ~ '/') | safe }}">All {{ taxonomy.name }}</a></p>
+  <h1 class="mt-0">#{{ term.name }}</h1>
+</header>
+
+{%- if paginator %}{% set posts = paginator.pages %}{% else %}{% set posts = term.pages %}{% endif %}
+
+<ul class="post-list">
+  {%- for post in posts %}
+  {{ m::post_item(page=post) }}
+  {%- endfor %}
+</ul>
+
+{%- if paginator and paginator.number_pagers > 1 %}
+{% include "partials/pagination.html" %}
+{%- endif %}
+{% endblock content %}

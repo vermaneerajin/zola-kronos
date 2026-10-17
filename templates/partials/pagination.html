@@ -1,0 +1,20 @@
+{%- import "macros.html" as m -%}
+<nav class="pagination" aria-label="Pagination">
+  {%- if paginator.previous %}
+  <a class="btn btn--ghost" href="{{ paginator.previous | safe }}" rel="prev">
+    {{ m::icon(name="arrow-left") }} Newer
+  </a>
+  {%- else %}
+  <span class="pagination__spacer"></span>
+  {%- endif %}
+
+  <span class="pagination__status">{{ paginator.current_index }} / {{ paginator.number_pagers }}</span>
+
+  {%- if paginator.next %}
+  <a class="btn btn--ghost" href="{{ paginator.next | safe }}" rel="next">
+    Older {{ m::icon(name="arrow-right") }}
+  </a>
+  {%- else %}
+  <span class="pagination__spacer"></span>
+  {%- endif %}
+</nav>

@@ -1,0 +1,24 @@
+{%- import "macros.html" as m -%}
+{%- set social = config.extra.kronos_social | default(value=[]) -%}
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="mt-0" style="margin-bottom:0">
+      &copy; {{ now() | date(format="%Y") }}
+      {{ config.extra.kronos_author | default(value=config.title) }}.
+      Built with <a href="https://www.getzola.org/">Zola</a> &amp;
+      <a href="https://github.com/getzola/zola/themes">Kronos</a>.
+    </p>
+    {%- if social %}
+    <ul class="social" aria-label="Elsewhere">
+      {%- for link in social %}
+      <li>
+        <a href="{{ link.url | replace(from='$BASE_URL', to=config.base_url) | safe }}"
+           aria-label="{{ link.icon }}" title="{{ link.icon }}" rel="me noopener">
+          {{ m::icon(name=link.icon) }}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</footer>

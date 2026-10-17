@@ -1,0 +1,67 @@
+# Demo / development site for the Kronos theme.
+base_url = "https://example.com"
+title = "Kronos"
+description = "A minimal, mobile-first Zola blog theme."
+
+compile_sass = true
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+minify_html = false
+
+taxonomies = [
+  { name = "tags", feed = true, paginate_by = 10 },
+]
+
+[markdown]
+smart_punctuation = true
+render_emoji = false
+bottom_footnotes = true
+
+[markdown.highlighting]
+# "class" emits CSS class names instead of inline colours, so the code palette
+# can follow the active light/dark mode. Zola writes `giallo-light.css` and
+# `giallo-dark.css`; Kronos links both and swaps their `media` on toggle.
+style = "class"
+light_theme = "github-light"
+dark_theme = "github-dark"
+add_color_scheme = false
+
+[extra]
+kronos_eyebrow = "Now writing"
+kronos_hero_title = "Kronos"
+kronos_cta2_text = "About"
+kronos_cta2_url = "/about/"
+kronos_home_section = "blog/_index.md"
+kronos_home_tags = true
+kronos_respect_os_theme = false
+kronos_tagline = "Writing about code, craft and the things in between."
+kronos_intro = "A minimal Zola theme built mobile-first, with big tappable targets and a light/dark switch."
+kronos_cta_text = "Read the blog"
+kronos_cta_url = "/blog/"
+kronos_home_posts = 5
+kronos_show_reading_time = true
+kronos_show_toc = false
+kronos_author = "Your Name"
+kronos_avatar = ""
+
+[[extra.kronos_menu]]
+name = "Blog"
+url = "/blog/"
+
+[[extra.kronos_menu]]
+name = "Tags"
+url = "/tags/"
+
+[[extra.kronos_menu]]
+name = "About"
+url = "/about/"
+
+[[extra.kronos_social]]
+icon = "github"
+url = "https://github.com/getzola/zola"
+
+[[extra.kronos_social]]
+icon = "rss"
+url = "/atom.xml"

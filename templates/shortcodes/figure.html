@@ -1,0 +1,5 @@
+{# Usage: {{ figure(src="/images/x.png", alt="…", caption="…") }} #}
+<figure>
+  <img src="{{ src }}" alt="{{ alt | default(value='') }}" loading="lazy" decoding="async">
+  {%- if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
+</figure>

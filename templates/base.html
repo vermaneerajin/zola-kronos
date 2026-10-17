@@ -1,0 +1,25 @@
+{%- import "macros.html" as m -%}
+<!DOCTYPE html>
+<html lang="{{ lang | default(value=config.default_language) }}" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  {% include "partials/head.html" %}
+  {% block head_extra %}{% endblock head_extra %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "partials/header.html" %}
+  <main class="site-main" id="main">
+    {% block main %}
+    <div class="wrap">
+      {% block content %}{% endblock content %}
+    </div>
+    {% endblock main %}
+  </main>
+  {% include "partials/footer.html" %}
+  <script src="{{ get_url(path='js/kronos.js') | safe }}" defer></script>
+  {% block body_extra %}{% endblock body_extra %}
+</body>
+</html>

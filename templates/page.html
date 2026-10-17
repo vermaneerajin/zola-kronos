@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — {{ config.title }}{% endblock title %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | json_encode | safe }},
+  {% if page.date %}"datePublished": {{ page.date | json_encode | safe }},{% endif %}
+  {% if page.updated %}"dateModified": {{ page.updated | json_encode | safe }},{% endif %}
+  "description": {{ page.description | default(value=config.description) | json_encode | safe }},
+  "url": {{ page.permalink | json_encode | safe }},
+  "author": {
+    "@type": "Person",
+    "name": {{ config.extra.kronos_author | default(value=config.title) | json_encode | safe }}
+  }
+}
+</script>
+{% endblock head_extra %}
+
+{% block content %}
+<article>
+  <header class="post-header prose">
+    {%- if page.date %}
+    <div class="post-meta">
+      <time datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time>
+      {%- if config.extra.kronos_show_reading_time | default(value=true) and page.reading_time %}
+      <span class="dot-sep">{{ page.reading_time }} min read</span>
+      {%- endif %}
+      {%- if page.extra.author %}<span class="dot-sep">{{ page.extra.author }}</span>{%- endif %}
+    </div>
+    {%- endif %}
+    <h1>{{ page.title }}</h1>
+    {%- if page.description %}
+    <p class="hero__intro" style="margin-bottom:1rem">{{ page.description }}</p>
+    {%- endif %}
+    {{ m::tags(page=page) }}
+  </header>
+
+  {%- if config.extra.kronos_show_toc | default(value=false) and page.toc | length > 1 %}
+  <details class="toc prose">
+    <summary>Contents</summary>
+    <ol>
+      {%- for h in page.toc %}
+      <li><a href="{{ h.permalink | safe }}">{{ h.title }}</a>
+        {%- if h.children %}
+        <ol>{% for c in h.children %}<li><a href="{{ c.permalink | safe }}">{{ c.title }}</a></li>{% endfor %}</ol>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ol>
+  </details>
+  {%- endif %}
+
+  <div class="post-content prose">{{ page.content | safe }}</div>
+</article>
+
+{#- Sibling posts in the section's sort order (Zola >= 0.22). -#}
+{%- set prev_post = page.lower -%}
+{%- set next_post = page.higher -%}
+{%- if prev_post or next_post %}
+<nav class="post-nav" aria-label="More posts">
+  {%- if prev_post %}
+  <a class="post-nav__link" href="{{ prev_post.permalink | safe }}" rel="prev">
+    <span class="post-nav__label">Newer</span>
+    <span>{{ prev_post.title }}</span>
+  </a>
+  {%- else %}<span></span>{%- endif %}
+  {%- if next_post %}
+  <a class="post-nav__link post-nav__link--next" href="{{ next_post.permalink | safe }}" rel="next">
+    <span class="post-nav__label">Older</span>
+    <span>{{ next_post.title }}</span>
+  </a>
+  {%- endif %}
+</nav>
+{%- endif %}
+{% endblock content %}

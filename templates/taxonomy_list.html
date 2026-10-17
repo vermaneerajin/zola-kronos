@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taxonomy.name | capitalize }} — {{ config.title }}{% endblock title %}
+
+{% block content %}
+<header class="post-header prose">
+  <h1 class="mt-0">{{ taxonomy.name | capitalize }}</h1>
+  <p class="hero__intro" style="margin-bottom:0">
+    {{ terms | length }} {{ taxonomy.name }} across the archive.
+  </p>
+</header>
+
+{%- if terms | length > 0 %}
+<ul class="tag-cloud">
+  {%- for term in terms %}
+  <li>
+    <a class="tag" href="{{ term.permalink | safe }}">#{{ term.name }}
+      <span class="tag__count">{{ term.pages | length }}</span>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>
+{%- else %}
+<div class="empty-state"><p class="mt-0">No {{ taxonomy.name }} yet.</p></div>
+{%- endif %}
+{% endblock content %}

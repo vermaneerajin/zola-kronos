@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }} — {{ config.description }}{% endblock title %}
+
+{% block main %}
+{#- The home page is a hero + a short list of recent posts. ------#}
+<section class="hero">
+  <div class="wrap">
+    {%- if config.extra.kronos_avatar | default(value="") != "" %}
+    <img class="hero__avatar" src="{{ get_url(path=config.extra.kronos_avatar) | safe }}" alt="" width="72" height="72">
+    {%- endif %}
+
+    <p class="hero__eyebrow"><span class="hero__dot"></span>{{ config.extra.kronos_eyebrow | default(value="Now writing") }}</p>
+
+    <h1 class="hero__title">{{ config.extra.kronos_hero_title | default(value=config.title) | safe }}</h1>
+
+    {%- if config.extra.kronos_tagline | default(value="") != "" %}
+    <p class="hero__tagline">{{ config.extra.kronos_tagline | safe }}</p>
+    {%- endif %}
+    {%- if config.extra.kronos_intro | default(value="") != "" %}
+    <p class="hero__intro">{{ config.extra.kronos_intro | safe }}</p>
+    {%- endif %}
+
+    <div class="hero__actions">
+      {%- if config.extra.kronos_cta_text | default(value="") != "" %}
+      <a class="btn btn--primary" href="{{ config.extra.kronos_cta_url | default(value='/') | safe }}">
+        {{ config.extra.kronos_cta_text }} {{ m::icon(name="arrow-right") }}
+      </a>
+      {%- endif %}
+      {%- if config.extra.kronos_cta2_text | default(value="") != "" %}
+      <a class="btn btn--ghost" href="{{ config.extra.kronos_cta2_url | default(value='/') | safe }}">
+        {{ config.extra.kronos_cta2_text }}
+      </a>
+      {%- endif %}
+    </div>
+  </div>
+</section>
+
+{%- set home_section = config.extra.kronos_home_section | default(value="blog/_index.md") -%}
+{%- set limit = config.extra.kronos_home_posts | default(value=5) -%}
+
+<div class="wrap" style="padding-block:2.5rem 1rem">
+  {#- Posts written directly in content/ (no blog section) still show up. -#}
+  {%- set_global posts = section.pages -%}
+  {%- set_global blog = false -%}
+  {%- if home_section in section.subsections -%}
+    {%- set_global blog = get_section(path=home_section) -%}
+    {%- set_global posts = blog.pages -%}
+  {%- endif -%}
+
+  {%- if posts | length > 0 %}
+  <div class="section-head">
+    <h2>Latest posts</h2>
+    {%- if blog %}
+    <a class="section-head__more" href="{{ blog.permalink | safe }}">All posts {{ m::icon(name="arrow-right") }}</a>
+    {%- endif %}
+  </div>
+
+  <ul class="post-list">
+    {%- for post in posts | slice(end=limit) %}
+    {{ m::post_item(page=post) }}
+    {%- endfor %}
+  </ul>
+  {%- else %}
+  <div class="empty-state">
+    <p class="mt-0">No posts yet. Add a markdown file under <code>content/blog/</code> to get started.</p>
+  </div>
+  {%- endif %}
+
+  {%- if config.extra.kronos_home_tags | default(value=true) %}
+  {%- set_global has_tags = false -%}
+  {%- for t in config.taxonomies -%}{%- if t.name == "tags" -%}{%- set_global has_tags = true -%}{%- endif -%}{%- endfor -%}
+  {%- if has_tags -%}
+  {%- set tags = get_taxonomy(kind="tags") -%}
+  {%- if tags.items | length > 0 %}
+  <div class="section-head" style="margin-top:3rem">
+    <h2>Browse by tag</h2>
+  </div>
+  <ul class="tag-cloud">
+    {%- for item in tags.items %}
+    <li>
+      <a class="tag" href="{{ item.permalink | safe }}">#{{ item.name }}
+        <span class="tag__count">{{ item.pages | length }}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+  {%- endif %}
+  {%- endif %}
+
+  {%- if section.content %}
+  <div class="post-content prose" style="margin-top:3rem">{{ section.content | safe }}</div>
+  {%- endif %}
+</div>
+{% endblock main %}

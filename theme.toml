@@ -1,0 +1,57 @@
+name = "Kronos"
+description = "A minimal, mobile-first blog theme with an eye-catching home page, light/dark modes and generous touch targets."
+license = "MIT"
+homepage = "https://github.com/yourname/kronos"
+# The minimum version of Zola required
+min_version = "0.22.0"
+demo = ""
+
+[extra]
+# Tagline shown under the site title in the hero
+kronos_eyebrow = "Now writing"
+kronos_hero_title = "Kronos"
+kronos_cta2_text = "About"
+kronos_cta2_url = "/about/"
+kronos_home_section = "blog/_index.md"
+kronos_home_tags = true
+kronos_respect_os_theme = false
+kronos_tagline = "Writing about code, craft and the things in between."
+# Short intro paragraph in the hero. Supports inline markup.
+kronos_intro = "A minimal Zola theme built mobile-first, with big tappable targets and a light/dark switch."
+# Label of the hero call-to-action button
+kronos_cta_text = "Read the blog"
+# Link target of the hero call-to-action button
+kronos_cta_url = "/blog/"
+# Number of recent posts to list on the home page
+kronos_home_posts = 5
+# Show estimated reading time on posts
+kronos_show_reading_time = true
+# Show a table of contents on pages that have headings
+kronos_show_toc = false
+# Footer copyright holder
+kronos_author = "Your Name"
+# Optional avatar shown in the hero, path relative to `static/`
+kronos_avatar = ""
+
+[author]
+name = "Your Name"
+homepage = "https://example.com"
+
+# Theme menu: rendered in the header nav
+[[extra.kronos_menu]]
+name = "Blog"
+url = "/blog/"
+
+[[extra.kronos_menu]]
+name = "Tags"
+url = "/tags/"
+
+[[extra.kronos_menu]]
+name = "About"
+url = "/about/"
+
+# Social links: rendered in the footer. `icon` is one of
+# github, mastodon, bluesky, x, linkedin, email, rss
+[[extra.kronos_social]]
+icon = "github"
+url = "https://github.com/yourname"

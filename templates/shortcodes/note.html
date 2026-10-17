@@ -1,0 +1,5 @@
+{# A callout box. Usage: {% note(title="Heads up") %} body {% end %} #}
+<aside class="toc" style="font-size:.9375rem">
+  {%- if title %}<strong>{{ title }}</strong>{% endif %}
+  {{ body | markdown | safe }}
+</aside>

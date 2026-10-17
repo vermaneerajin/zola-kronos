@@ -1,0 +1,31 @@
+// ---------------------------------------------------------------
+// Kronos design tokens
+// ---------------------------------------------------------------
+
+// Brand
+$primary:        #369369;
+$primary-dark:   #2a7a56;  // hover on light backgrounds
+$primary-light:  #4fc08d;  // accent on dark backgrounds
+
+// Touch ergonomics: nothing interactive is ever smaller than this.
+$tap-target: 48px;
+
+// Type scale (fluid, mobile-first)
+$font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+            "Liberation Mono", monospace;
+
+// Layout
+$measure:     34rem;   // comfortable reading width
+$wide:        56rem;   // outer container
+$gutter:      1.25rem; // mobile side padding
+
+// Breakpoints
+$bp-sm: 36rem;   // 576px
+$bp-md: 48rem;   // 768px
+$bp-lg: 64rem;   // 1024px
+
+@mixin from($bp) {
+  @media (min-width: $bp) { @content; }
+}
