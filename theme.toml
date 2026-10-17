@@ -4,6 +4,7 @@ license = "MIT"
 homepage = "https://github.com/yourname/kronos"
 # The minimum version of Zola required
 min_version = "0.22.0"
+tags = ["blog", "minimal", "responsive", "dark", "light", "mobile"]
 demo = ""
 
 [extra]
