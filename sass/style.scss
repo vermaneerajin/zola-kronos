@@ -226,6 +226,15 @@ a {
   flex: none;
   color: var(--primary);
 }
+/* A supplied image may not be square, so pin the height and let the width
+   follow, up to a sensible cap. */
+.brand__mark--img {
+  width: auto;
+  max-width: 2.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  border-radius: .25rem;
+}
 
 /* Nav: a horizontal scroller on phones, inline from md up.
    Every item is at least 48px tall and 44px wide. */

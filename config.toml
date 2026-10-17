@@ -29,6 +29,7 @@ dark_theme = "github-dark"
 add_color_scheme = false
 
 [extra]
+kronos_brand_icon = ""
 kronos_favicon = "icons/favicon.svg"
 kronos_favicon_ico = "favicon.ico"
 kronos_apple_touch_icon = "apple-touch-icon.png"

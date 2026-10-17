@@ -168,6 +168,29 @@ To add a real icon for it, override `templates/macros.html` in your own site and
 add a branch to the `icon` macro. Icons are 24x24 inline SVG drawn in a 1.75
 stroke weight with `currentColor`, so they inherit the theme automatically.
 
+### Brand mark
+
+The small icon beside the site title in the header.
+
+```toml
+[extra]
+kronos_brand_icon = ""                    # built-in clock mark (default)
+kronos_brand_icon = "icons/logo.svg"      # your own image
+kronos_brand_icon = "none"                # no icon, title only
+```
+
+A path is relative to `static/`, exactly like the favicon options. The image is
+pinned to 1.5rem tall with the width following its aspect ratio (capped at
+2.5rem), so a wordmark or a non-square logo will not distort.
+
+One thing to know about the default: the built-in clock is an *inline* SVG
+drawn with `currentColor`, so it picks up `--primary` and shifts with the
+light/dark switch for free. A supplied image is an `<img>` and cannot do that —
+if your logo needs to differ between modes, either use an SVG with its own
+`prefers-color-scheme` block inside it (see
+[`static/icons/favicon.svg`](static/icons/favicon.svg) for the pattern), or
+override `templates/partials/header.html` in your site.
+
 ### Favicons
 
 The theme ships a default icon set (a clock mark in the brand colour) so a new
