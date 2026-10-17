@@ -22,22 +22,20 @@ Requires Zola **0.22.0** or newer.
 
 ```bash
 cd my-site
-git submodule add https://github.com/vermaneerajin/zola-kronos.git themes/kronos
+git submodule add https://github.com/vermaneerajin/zola-kronos.git themes/zola-kronos
 git submodule update --init --recursive
 ```
 
-The submodule directory must be named `kronos`, matching the `theme` value
-below — the repository itself is called `zola-kronos`, so pass the path
-explicitly as shown. If you would rather not use submodules, clone it instead:
+If you would rather not use submodules, clone it instead:
 
 ```bash
-git clone https://github.com/vermaneerajin/zola-kronos.git themes/kronos
+git clone https://github.com/vermaneerajin/zola-kronos.git themes/zola-kronos
 ```
 
 Then in `config.toml`:
 
 ```toml
-theme = "kronos"
+theme = "zola-kronos"
 compile_sass = true
 
 taxonomies = [
@@ -168,6 +166,10 @@ zola serve
 The repository doubles as a demo site: `config.toml` and `content/` at the root
 are the example, and the theme itself is `templates/`, `sass/`, `static/` and
 `theme.toml`.
+
+## Author
+
+By [Neeraj Verma](https://github.com/vermaneerajin).
 
 ## License
 

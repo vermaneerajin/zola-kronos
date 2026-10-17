@@ -43,7 +43,7 @@ kronos_cta_url = "/blog/"
 kronos_home_posts = 5
 kronos_show_reading_time = true
 kronos_show_toc = false
-kronos_author = "Your Name"
+kronos_author = "Neeraj Verma"
 kronos_avatar = ""
 
 [[extra.kronos_menu]]
